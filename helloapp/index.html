@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>Hello React</title>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
 </head>
 <body>
-    <div id="header">
+    <div id="header"></div>
+    <div id="container"></div>
+    <div id="info">
+    В данном случае в элементе с id=header будет отображаться текущее время, однако, чтобы каждую секунду изменялось отображаемое значение, там надо повторно вызывать функцию для элемента.
+    При обновлении элемента виртуальный React DOM сравнивает текущее состояние элемента с его предыдущим состоянием и при наличии изменений применяет их к веб-странице и обновляет стандартный DOM. Но обновляться будет не весь пересоздаваемый элемент, а только текстовый узел, который содержит вывод текущего времени, так как только этот узел будет отличаться от предыдущего состояния.
     </div>
-    <div id="container">
-    </div>
-     
-    <script src="https://unpkg.com/react@15/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
-     
-    <script type="text/babel">
-        ReactDOM.render(
-            <h1>Hello React!</h1>, 
-            document.getElementById("header")
-        );
-
-        ReactDOM.render(
-            <div id="items">
-                <h2>Список телефонов</h2>
-                <ul>
-                    <li>iPhone 7</li>
-                    <li>Samsung Galaxy A5</li>
-                    <li>HTC U Ultra</li>
-                    <li>Pixel XL</li>
-                </ul>
-            </div>,
-            document.getElementById("container"),
-            function(){ console.log("рендеринг элемента React");}
-        )
-    </script>
+    
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+     
+    <script type="text/babel">
+        function tick() {
+          ReactDOM.render(
+            <div>
+              <h1>Hello, React!</h1>
+              <h2>Текущее время {new Date().toLocaleTimeString()}.</h2>
+            </div>,
+            document.getElementById("header")
+          );
+        }
+        setInterval(tick, 1000);
+        ReactDOM.render(
+            <div>
+                <h2>Список телефонов</h2>
+                <ul>
+                    <li>iPhone 7</li>
+                    <li>Samsung Galaxy A5</li>
+                    <li>HTC U Ultra</li>
+                </ul>
+            </div>,
+            document.getElementById("container"),
+            function(){ console.log("рендеринг элемента React");}
+        )
+    </script>
 </body>
 </html>
