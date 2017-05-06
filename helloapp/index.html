@@ -1,18 +1,69 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <title>Hello React</title>
 </head>
+
 <body>
     <div id="container">
     </div>
-     
+
     <script src="https://unpkg.com/react@15/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
-     
+
     <script type="text/babel" src="index.js"></script>
+
+    <script type="text/babel">
+        ReactDOM.render(
+        <h2>2 + 2 = {2 + 2}</h2>, document.getElementById("container") )
+    </script>
+
+    <script type="text/babel">
+        const user = {
+            id : 5,
+            age: 33,
+            firstName: 'Tom',
+            lastName: 'Johns',
+            getFullName: function(){ 
+                return `${this.firstName} ${this.lastName}`;
+            }
+        };
+        ReactDOM.render(
+            <div id={user.id}>
+                <p>Полное имя: {user.getFullName()}</p>
+                <p>Возраст: {user.age}</p>
+                <p>Время генерации данных: {new Date().toLocaleTimeString()}</p>
+            </div>,
+            document.getElementById("container")
+        )
+    </script>
+
+    <script type="text/babel">
+        const user = {
+            id : 5,
+            age: 33,
+            firstName: 'Tom',
+            lastName: 'Johns',
+            getFullName: function(){ 
+                return `${this.firstName} ${this.lastName}`;
+            }
+        };
+        var userClassName = "user-info";
+        var styleObj = {
+            color:'red', 
+            fontFamily:'Verdana'
+        };
+        ReactDOM.render(
+            <div className={userClassName}  style={styleObj}>
+                <p>Полное имя: {user.getFullName()}</p>
+                <p>Возраст: {user.age}</p>
+            </div>,
+            document.getElementById("container")
+        )
+    </script>
 </body>
+
 </html>
