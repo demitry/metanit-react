@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+</head>
+<body>
+    <div id="header0"></div>
+    <div id="header1"></div>
+    <div id="header2"></div>
+    <div id="header3"></div>
+
+    <div>
+<br>Если рассмотреть поэтапно, то рендеринг компонента будет происходить следующим образом:
+<br>Для рендеринга компонента <Hello /> вызывается функция ReactDOM.render()
+<br>React вызывает компонент Hello
+<br>Компонент Hello возвращает элемент Привет, Eugene
+<br>React DOM обновляет стандартный DOM веб-страницы, чтобы она содержала элемент Привет, Eugene
+
+    </div>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+     
+    <script type="text/babel">
+         
+        function Hello1() {
+            return <h1>Привет, Eugene1</h1>;
+        }
+
+        var Hello2 = React.createClass({
+            render: function(){
+                return(<h1>Привет, Eugene2</h1>);
+            }
+        });
+        
+        var Hello3 = () => {
+            return (<h1>Привет, Eugene3</h1>);
+        }
+        
+        class Hello extends React.Component {
+          render() {
+            return <h1>Привет, Eugene0</h1>;
+          }
+        }
+        
+        ReactDOM.render(
+            <Hello />,
+            document.getElementById("header0")
+        )
+        ReactDOM.render(
+            <Hello1 />,
+            document.getElementById("header1")
+        )
+        ReactDOM.render(
+            <Hello2 />,
+            document.getElementById("header2")
+        )
+         ReactDOM.render(
+            <Hello3 />,
+            document.getElementById("header3")
+        )
+        
+        
+    </script>
+</body>
+</html>

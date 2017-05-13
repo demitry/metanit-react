@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Компоненты в React</title>
+</head>
+<body>
+    <div id="container1"></div>
+    <div id="container2"></div>
+    <div id="container3"></div>
+
+    <script src="https://unpkg.com/react@15/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.38/browser.min.js"></script>
+     
+    <script type="text/babel">
+
+        var Hello1 = React.createClass({
+            getDefaultProps: function(){
+                return {name: "Nick", age: 31};
+            },
+            render: function(){
+                return(<div>
+                        <p>Имя: {this.props.name}</p>
+                        <p>Возраст: {this.props.age}</p>
+                    </div>);
+            }
+        });
+
+        function Hello2(props) {
+            return <div>
+                <p>Имя: {props.name}</p>
+                <p>Возраст: {props.age}</p>
+            </div>;
+        }
+        Hello2.defaultProps = {name: "Tom Waits", age: 54};
+
+
+        //Сам this.props представляет неизменяемый объект, который предназначен только для чтения. Поэтому не следует его изменять, например:
+        class HelloError extends React.Component {
+            render() {
+                this.props.name = "Tom Error";
+                return <h1>Привет, {this.props.name}</h1>;
+            }
+        }
+
+        ReactDOM.render(
+            <Hello1  />,
+            document.getElementById("container1")
+        )
+
+        ReactDOM.render(
+            <Hello2  />,
+            document.getElementById("container2")
+        )
+
+        ReactDOM.render(
+            <HelloError  />,
+            document.getElementById("container3")
+        )
+
+    </script>
+</body>
+</html>
